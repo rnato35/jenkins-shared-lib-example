@@ -1,6 +1,6 @@
 def call(opts) {
     // Pull the Docker image from Docker Hub
-    sh "docker pull ${opts.dockerRegistry}/${opts.dockerImageName}:${opts.pipelineParams.dockerImageTag}"
+    sh "docker pull ${opts.dockerRegistry}/${opts.dockerImageName}:${opts.dockerImageTag}"
     
     // Configure the AWS CLI with your AWS credentials
     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'aws_access_key')]) {
