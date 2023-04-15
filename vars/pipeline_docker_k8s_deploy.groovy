@@ -20,7 +20,7 @@ def call(body) {
                 steps {
                     script {
                         // Pull the Docker image from Docker Hub
-                        sh "docker pull ${pipelineParams.dockerRegistry}/${dockerImageName}:${pipelineParams.dockerImageTag}"
+                        sh "docker pull ${pipelineParams.dockerRegistry}/${pipelineParams.dockerImageName}:${pipelineParams.dockerImageTag}"
                         
                         utility_eksDeploy(pipelineParams)
                     }
