@@ -19,9 +19,6 @@ def call(body) {
             stage('Deploy to EKS') {
                 steps {
                     script {
-                        // Pull the Docker image from Docker Hub
-                        sh "docker pull ${pipelineParams.dockerRegistry}/${pipelineParams.dockerImageName}:${pipelineParams.dockerImageTag}"
-                        
                         utility_eksDeploy(pipelineParams)
                     }
                 }
