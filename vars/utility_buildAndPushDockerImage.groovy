@@ -4,11 +4,12 @@ def call(String imageName, String imageTag, String dockerfilePath) {
             // Authenticate with Docker Hub
             sh "echo \${DOCKERHUB_PASSWORD} | docker login --username=\${DOCKERHUB_USERNAME} --password-stdin"
 
+                        sh "ls -ltra && pwd"
+
             // Build and push the Docker image
             sh "docker build -t ${imageName}:${imageTag} -f ${dockerfilePath} ."
             sh "docker push ${imageName}:${imageTag}"
 
-            sh "ls -ltra && pwd"
         }
     }
 }
