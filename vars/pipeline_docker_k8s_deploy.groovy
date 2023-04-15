@@ -15,7 +15,7 @@ def call(body) {
                 steps {
                     script {
                         println("Test print")
-                        println(testvar1)
+                        println(pipelineParams.testvar1)
                     }
                 }
             }
