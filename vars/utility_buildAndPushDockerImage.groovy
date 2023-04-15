@@ -7,6 +7,8 @@ def call(String imageName, String imageTag, String dockerfilePath) {
             // Build and push the Docker image
             sh "docker build -t ${imageName}:${imageTag} -f ${dockerfilePath} ."
             sh "docker push ${imageName}:${imageTag}"
+
+            sh "ls -ltra && pwd"
         }
     }
 }
