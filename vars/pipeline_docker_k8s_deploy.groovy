@@ -9,7 +9,7 @@ def call(body) {
     pipelineParams.jenkinsNode = 'any'
 
     pipeline {
-        agent "${pipelineParams.jenkinsNode}"
+        agent any
         stages {
             stage('Docker build') {
                 steps {
