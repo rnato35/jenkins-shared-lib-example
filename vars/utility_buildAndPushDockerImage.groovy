@@ -1,4 +1,4 @@
-def buildAndPushDockerImage(String imageName, String imageTag, String dockerfilePath) {
+def call(String imageName, String imageTag, String dockerfilePath) {
     withCredentials([usernamePassword(credentialsId: 'dockerhub-id', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
         script {
             // Authenticate with Docker Hub
