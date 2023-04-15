@@ -12,7 +12,7 @@ def call(body) {
             stage('Docker build') {
                 steps {
                     script {
-                        utility_buildAndPushDockerImage(pipelineParams.dockerImageName, pipelineParams.dockerImageTag, pipelineParams.dockerfilePath)
+                        utility_buildAndPushDockerImage(pipelineParams)
                     }
                 }
             }
