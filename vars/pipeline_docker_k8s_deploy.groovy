@@ -1,7 +1,8 @@
 def call(body) {
     def agent = 'any'
     pipeline {
-        agent ${agent}
+        agent {
+            ${agent}
         }
         stages {
             stage('Docker build') {
