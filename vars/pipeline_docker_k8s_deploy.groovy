@@ -6,16 +6,13 @@ def call(body) {
     body()
     pipelineParams.each { println(it) }
 
-    pipelineParams.jenkinsNode = 'any'
-
     pipeline {
         agent any
         stages {
             stage('Docker build') {
                 steps {
                     script {
-                        println("Test print")
-                        println(pipelineParams.testvar1)
+                        utility_buildAndPushDockerImage(pipelineParams.dockerImageName, pipelineParams.dockerImageTag, pipelineParams.dockerfilePath)
                     }
                 }
             }
