@@ -6,7 +6,7 @@ def call(body) {
     body()
     pipelineParams.each { println(it) }
 
-    def pipelineParams.jenkinsNode = 'any'
+    pipelineParams.jenkinsNode = 'any'
 
     pipeline {
         agent "${pipelineParams.jenkinsNode}"
