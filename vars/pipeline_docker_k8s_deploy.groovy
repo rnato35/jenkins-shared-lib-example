@@ -1,7 +1,15 @@
 def call(body) {
-    def jenkinsNode = 'any'
+
+    def pipelineParams = [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = pipelineParams
+    body()
+    pipelineParams.each { println(it) }
+
+    def pipelineParams.jenkinsNode = 'any'
+
     pipeline {
-        agent "${jenkinsNode}"
+        agent "${pipelineParams.jenkinsNode}"
         stages {
             stage('Docker build') {
                 steps {
