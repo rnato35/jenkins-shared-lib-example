@@ -42,7 +42,7 @@ def call(body) {
             always {
                 println(WORKSPACE)
                 sh("pwd && ls -ltra")
-                sh("cat ../../docker/config.json")
+                sh("cat ../../.docker/config.json")
                 cleanWs()
             }
         }
