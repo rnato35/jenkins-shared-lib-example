@@ -41,7 +41,7 @@ def call(body) {
         post {
             always {
                 // Cleanup docker stored creds
-                sh("echo "" > ../../.docker/config.json || true")
+                sh("rm -f ../../.docker/config.json || true")
                 cleanWs()
             }
         }
