@@ -19,17 +19,11 @@ def call(body) {
             stage('Update manifest') {
                 steps {
                     script {
-                        
-                        def fileContent = readFile("${WORKSPACE}/${pipelineParams.eksManifestFile}")
+                        sh "sed -i 's/dockerRegistry_PLACEHOLDER/${pipelineParams.dockerRegistry}/g' ${pipelineParams.eksManifestFile}"
+                        sh "sed -i 's/dockerImageName_PLACEHOLDER/${pipelineParams.dockerImageName}/g' ${pipelineParams.eksManifestFile}"
+                        sh "sed -i 's/dockerImageTag_PLACEHOLDER/${pipelineParams.dockerImageTag}/g' ${pipelineParams.eksManifestFile}"
 
-                        def placeholders = []
-                        def matcher = (fileContent =~ \w+_PLACEHOLDER\b)
-                        matcher.each {
-                            placeholders.add(it[0])
-                        }
-
-                        println(placeholders)
-
+                        sh "cat ${pipelineParams.eksManifestFile}"
                     }
                 }
             }
