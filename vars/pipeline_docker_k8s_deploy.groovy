@@ -22,8 +22,7 @@ def call(body) {
 
                         def manifestContents = readFile(file: pipelineParams.eksManifestFile)
 
-                        def placeholders = manifestContents.readLines().findAll { it.contains('_PLACEHOLDER') }.collect { it.replaceAll(/.*(_PLACEHOLDER.*)/, '$1') }
-                        placeholders = placeholders.collect { it.replaceAll(/_PLACEHOLDER:/, '').replaceAll(/"/, '').trim() }
+                        def placeholders = manifestContents.readLines().findAll { it =~ /.*PLACEHOLDER.*/ }.collect { it.split(':')[1].replaceAll(/"/, '').trim() }
                         echo "Found Placeholders: ${placeholders}"
 
                     }
