@@ -24,7 +24,7 @@ def call(body) {
                         pipelineParams.dockerImageTag = "2.0.0"
                         pipelineParams.dockerRegistry = 'rnato35' */
 
-                        def manifestContents = readFile(file: manifestFilePath)
+                        def manifestContents = readFile(file: pipelineParams.eksManifestFile)
                         def pattern = ~/^.*_PLACEHOLDER$/
                         def placeholders = manifestContents.findAll(pattern)
 
