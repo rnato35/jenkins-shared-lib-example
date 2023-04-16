@@ -17,7 +17,7 @@ def call(opts) {
     /* // Apply the Kubernetes deployment manifest to deploy the Docker image
     sh "kubectl apply -f ${opts.eksManifestFile}" */
 
-    sh "aws eks update-kubeconfig --name ${opts.eksClusterName}
+    sh "aws eks update-kubeconfig --name ${opts.eksClusterName}"
 
     sh "kubectl get pods"
     sh "kubectl get namespaces"
