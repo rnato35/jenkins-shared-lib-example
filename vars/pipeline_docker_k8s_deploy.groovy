@@ -16,10 +16,32 @@ def call(body) {
                     }
                 }
             }
+            stage('Update manifest') {
+                steps {
+                    script {
+
+                        /* pipelineParams.dockerImageName = "nginx-test"
+                        pipelineParams.dockerImageTag = "2.0.0"
+                        pipelineParams.dockerRegistry = 'rnato35' */
+
+                        def manifestContents = readFile(file: manifestFilePath)
+                        def pattern = ~/^.*_PLACEHOLDER$/
+                        def placeholders = manifestContents.findAll(pattern)
+
+                        def placeholderVariables = placeholders.collect { placeholder ->
+                        placeholder.substring(0, placeholder.size() - '_PLACEHOLDER'.size())
+                        }
+
+                        println(placeholderVariables)
+
+                    }
+                }
+            }
             stage('Deploy to EKS') {
                 steps {
                     script {
-                        utility_eksDeploy(pipelineParams)
+                        //utility_eksDeploy(pipelineParams)
+                        echo "test"
                     }
                 }
             }
