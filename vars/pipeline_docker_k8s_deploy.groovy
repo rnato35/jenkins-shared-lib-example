@@ -22,8 +22,11 @@ def call(body) {
 
                         def manifestContents = readFile(file: pipelineParams.eksManifestFile)
 
-                        def placeholders = manifestContents.findAll(/"[^"]+_PLACEHOLDER"/)
-                        println placeholders
+                        def placeholders = []
+                        sh "grep -o '\"docker[^\\\"]*_PLACEHOLDER\"' ${pipelineParams.eksManifestFile} | sort -u | tr -d '\"'".eachLine {
+                            placeholders.add(it.trim())
+                        }
+                        println(placeholders)
 
                     }
                 }
