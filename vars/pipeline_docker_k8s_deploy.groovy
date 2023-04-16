@@ -20,11 +20,9 @@ def call(body) {
                 steps {
                     script {
 
-                        /* pipelineParams.dockerImageName = "nginx-test"
-                        pipelineParams.dockerImageTag = "2.0.0"
-                        pipelineParams.dockerRegistry = 'rnato35' */
-
                         def manifestContents = readFile(file: pipelineParams.eksManifestFile)
+
+                        sh("cat ${pipelineParams.eksManifestFile}")
                         def pattern = ~/^.*_PLACEHOLDER$/
                         def placeholders = manifestContents.findAll(pattern)
 
