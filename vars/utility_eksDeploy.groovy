@@ -18,5 +18,5 @@ def call(opts) {
     sh "pwd && ls -ltra"
 
     // Apply the Kubernetes deployment manifest to deploy the Docker image
-    sh "kubectl apply -f ${opts.eksManifestFile}"
+    sh "kubectl apply -f ${WORKSPACE}/${opts.eksManifestFile}"
 }
