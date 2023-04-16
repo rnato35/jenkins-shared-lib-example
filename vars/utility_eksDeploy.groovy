@@ -11,11 +11,13 @@ def call(opts) {
     }
     withCredentials([string(credentialsId: 'AWS_DEFAULT_REGION', variable: 'aws_region')]) {
         sh 'aws configure set default.region $aws_region'
-        sh "aws eks update-kubeconfig --name ${opts.eksClusterName} --region $aws_region"
+        //sh "aws eks update-kubeconfig --name ${opts.eksClusterName} --region $aws_region"
     }
     
     /* // Apply the Kubernetes deployment manifest to deploy the Docker image
     sh "kubectl apply -f ${opts.eksManifestFile}" */
+
+    sh "aws eks update-kubeconfig --name ${opts.eksClusterName}
 
     sh "kubectl get pods"
     sh "kubectl get namespaces"
