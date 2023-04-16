@@ -23,7 +23,7 @@ def call(body) {
                         def fileContent = readFile("${WORKSPACE}/${pipelineParams.eksManifestFile}")
 
                         def placeholders = []
-                        def matcher = (fileContent =~ /"_PLACEHOLDER"/)
+                        def matcher = (fileContent =~ \w+_PLACEHOLDER\b)
                         matcher.each {
                             placeholders.add(it[0])
                         }
