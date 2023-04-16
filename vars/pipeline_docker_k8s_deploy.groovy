@@ -32,13 +32,15 @@ def call(body) {
             stage('Deploy to EKS') {
                 steps {
                     script {
-                        utility_eksDeploy(pipelineParams)
+                        //utility_eksDeploy(pipelineParams)
                     }
                 }
             }
         }
         post {
             always {
+                println(WORKSPACE)
+                sh("pwd && ls -ltra")
                 cleanWs()
             }
         }
