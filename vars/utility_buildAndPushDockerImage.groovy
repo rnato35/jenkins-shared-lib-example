@@ -6,7 +6,7 @@ def call(opts) {
 
             // Build and push the Docker image
             sh "docker build -t ${opts.dockerRegistry}/${opts.dockerImageName}:${opts.dockerImageTag} -f ${WORKSPACE}/${opts.dockerfilePath} ."
-            sh "docker push ${opts.dockerRegistry}/{$opts.dockerImageName}:${opts.dockerImageTag}"
+            sh "docker push ${opts.dockerRegistry}/${opts.dockerImageName}:${opts.dockerImageTag}"
         }
     }
 }
