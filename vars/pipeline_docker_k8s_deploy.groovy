@@ -19,13 +19,15 @@ def call(body) {
             stage('Update manifest') {
                 steps {
                     script {
-
-                        def manifestContents = readFile(file: pipelineParams.eksManifestFile)
+                        
+                        def fileContent = readFile("${WORKSPACE}/${pipelineParams.eksManifestFile}")
 
                         def placeholders = []
-                        sh "grep -o '\"docker[^\\\"]*_PLACEHOLDER\"' ${WORKSPACE}${pipelineParams.eksManifestFile} | sort -u | tr -d '\"'".eachLine {
-                            placeholders.add(it.trim())
+                        def matcher = (fileContent =~ /"_PLACEHOLDER"/)
+                        matcher.each {
+                            placeholders.add(it[0])
                         }
+
                         println(placeholders)
 
                     }
