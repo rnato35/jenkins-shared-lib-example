@@ -13,9 +13,9 @@ def call(opts) {
         sh 'aws configure set default.region $aws_region'
     }
     
-    /* // Configure the kubectl context for the EKS cluster
-    sh "aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME}"
+    // Configure the kubectl context for the EKS cluster
+    sh "aws eks update-kubeconfig --name ${opts.eksClusterName}"
     
     // Apply the Kubernetes deployment manifest to deploy the Docker image
-    sh "kubectl apply -f your_kubernetes_deployment_manifest.yaml" */
+    sh "kubectl apply -f ${opts.eksManifestFile}"
 }
