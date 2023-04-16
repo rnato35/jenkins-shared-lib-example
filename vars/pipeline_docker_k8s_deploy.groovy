@@ -19,13 +19,13 @@ def call(body) {
             stage('Update manifest') {
                 steps {
                     script {
+                        // Replacing placeholders with actual values
                         sh "sed -i 's/dockerRegistry_PLACEHOLDER/${pipelineParams.dockerRegistry}/g' ${pipelineParams.eksManifestFile}"
                         sh "sed -i 's/dockerImageName_PLACEHOLDER/${pipelineParams.dockerImageName}/g' ${pipelineParams.eksManifestFile}"
                         sh "sed -i 's/dockerImageTag_PLACEHOLDER/${pipelineParams.dockerImageTag}/g' ${pipelineParams.eksManifestFile}"
 
-                        println("--- K8S MANIFEST ---")
+                        println("--- UPDATED K8S MANIFEST ---")
                         sh "cat ${pipelineParams.eksManifestFile}"
-                        println("--------------------")
                     }
                 }
             }

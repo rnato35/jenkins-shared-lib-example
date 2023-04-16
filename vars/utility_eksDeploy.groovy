@@ -1,8 +1,8 @@
 def call(opts) {
-    // Pull the Docker image from Docker Hub
+    // Pull the Docker image
     sh "docker pull ${opts.dockerRegistry}/${opts.dockerImageName}:${opts.dockerImageTag}"
     
-    // Configure the AWS CLI with your AWS credentials
+    // Configure the AWS CLI
     withCredentials([string(credentialsId: 'AWS_ACCESS_KEY_ID', variable: 'aws_access_key')]) {
         sh 'aws configure set aws_access_key_id $aws_access_key'
     }
@@ -15,8 +15,6 @@ def call(opts) {
 
     sh "aws eks update-kubeconfig --name ${opts.eksClusterName}"
 
-    sh "pwd && ls -ltra"
-
-    // Apply the Kubernetes deployment manifest to deploy the Docker image
+    // Apply the Kubernetes manifest
     sh "kubectl apply -f ${WORKSPACE}/${opts.eksManifestFile}"
 }
