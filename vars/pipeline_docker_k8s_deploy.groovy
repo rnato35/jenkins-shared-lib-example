@@ -40,9 +40,8 @@ def call(body) {
         }
         post {
             always {
-                println(WORKSPACE)
-                sh("pwd && ls -ltra")
-                sh("cat ../../.docker/config.json")
+                // Cleanup docker stored creds
+                sh("echo "" > ../../.docker/config.json || true")
                 cleanWs()
             }
         }
