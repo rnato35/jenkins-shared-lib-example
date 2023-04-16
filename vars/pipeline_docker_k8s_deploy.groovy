@@ -23,15 +23,16 @@ def call(body) {
                         sh "sed -i 's/dockerImageName_PLACEHOLDER/${pipelineParams.dockerImageName}/g' ${pipelineParams.eksManifestFile}"
                         sh "sed -i 's/dockerImageTag_PLACEHOLDER/${pipelineParams.dockerImageTag}/g' ${pipelineParams.eksManifestFile}"
 
+                        println("--- K8S MANIFEST ---")
                         sh "cat ${pipelineParams.eksManifestFile}"
+                        println("--------------------")
                     }
                 }
             }
             stage('Deploy to EKS') {
                 steps {
                     script {
-                        //utility_eksDeploy(pipelineParams)
-                        echo "test"
+                        utility_eksDeploy(pipelineParams)
                     }
                 }
             }
