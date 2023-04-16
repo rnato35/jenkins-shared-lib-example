@@ -7,7 +7,7 @@ def call(opts) {
         sh "aws configure set aws_access_key_id ${aws_access_key}"
     }
     withCredentials([string(credentialsId: 'AWS_SECRET_ACCESS_KEY', variable: 'aws_secret_key')]) {
-        sh "ws configure set aws_secret_access_key ${aws_secret_key}"
+        sh "aws configure set aws_secret_access_key ${aws_secret_key}"
     }
     withCredentials([string(credentialsId: 'AWS_DEFAULT_REGION', variable: 'aws_region')]) {
         sh "aws configure set default.region ${aws_region}"
