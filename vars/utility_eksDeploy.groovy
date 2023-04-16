@@ -19,6 +19,7 @@ def call(opts) {
 
     sh "aws eks update-kubeconfig --name ${opts.eksClusterName}"
 
+    sh "aws sts get-caller-identity"
     sh "kubectl get pods"
     sh "kubectl get namespaces"
 }
