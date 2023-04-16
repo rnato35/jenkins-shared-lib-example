@@ -32,8 +32,7 @@ def call(body) {
             stage('Deploy to EKS') {
                 steps {
                     script {
-                        //utility_eksDeploy(pipelineParams)
-                        println("test1")
+                        utility_eksDeploy(pipelineParams)
                     }
                 }
             }
