@@ -22,17 +22,10 @@ def call(body) {
 
                         def manifestContents = readFile(file: pipelineParams.eksManifestFile)
 
-                        sh("cat ${pipelineParams.eksManifestFile}")
-                        def pattern = ~/^.*_PLACEHOLDER$/
-                        def placeholders = manifestContents.findAll(pattern)
+                        def placeholders = manifestContents.readLines().findAll { it.contains('_PLACEHOLDER') }.collect { it.replaceAll(/.*(_PLACEHOLDER.*)/, '$1') }
+                        echo "Found Placeholders: ${placeholders}"
 
-                        def placeholderVariables = placeholders.collect { placeholder ->
-                        placeholder.substring(0, placeholder.size() - '_PLACEHOLDER'.size())
                         }
-
-                        println(placeholderVariables)
-
-                    }
                 }
             }
             stage('Deploy to EKS') {
